@@ -31,11 +31,17 @@ let data = [
     }
   ];
 
+// 宣告一個 ticketCardArea 的變數，值為 抓取 document 文件中 class名稱為 ticketCard-area
 const ticketCardArea = document.querySelector(".ticketCard-area");
+// 宣告一個 searchResult 的變數，值為 抓取 document 文件中 id名稱為 searchResult-text
+const searchResult = document.querySelector("#searchResult-text");
+// 宣告一個 renderData 的變數，值為 一個箭頭函式，參數為 data
 const renderData = (data) => {
-    // 宣告一個變數 cardList，值為空字串
+    // 宣告一個 cardList 的變數，值為 空字串
     let cardList = "";
+        // data 參數，使用 forEach 遍歷資料，使用箭頭函式，參數為 item，將遍歷完成的資料儲存在 item 中，資料型別為一個陣列資料，裡面包含了多個物件的資料
         data.forEach((item) => {
+        // cardList 的變數，重新賦予值為 一段 html 結構的程式碼，其中分別帶入 forEach 遍歷完成的資料，imgUrl、area、rate、name、description、group、price
         cardList += `
             <li class="ticketCard">
                 <div class="ticketCard-img">
@@ -64,7 +70,12 @@ const renderData = (data) => {
                 </div>
             </li>`;
         });
-        ticketCardArea.innerHTML = cardList;        
+        // ticketCardArea 的變數，插入HTML資料，值為 cardList 的資料
+        ticketCardArea.innerHTML = cardList;
+        // searchResult 的變數，插入 HTML 資料，值為 `本次搜尋共 ${data.length} 筆資料`，其中帶入 data 透過 length 計算 data 陣列資料筆數作用渲染值
+        searchResult.innerHTML = `本次搜尋共 ${data.length} 筆資料`;
 };
-renderData(data);
-
+function init(){
+  renderData(data);
+}
+init();
