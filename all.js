@@ -79,3 +79,16 @@ function init(){
   renderData(data);
 }
 init();
+// 新增地區篩選功能
+const regionSearch = document.querySelector('.regionSearch');
+regionSearch.addEventListener("change",function(e) {
+  let filterData;
+  if (e.target.value === ""){
+    filterData = data;
+  }else {
+    filterData = data.filter(function (item){
+      return e.target.value === item.area;
+    })
+  }
+  renderData(filterData);
+});
